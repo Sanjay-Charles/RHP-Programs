@@ -1,21 +1,24 @@
 #include <iostream>
-#include <cctype>
 using namespace std;
 
 int main() {
     string str;
     cin >> str;
 
-    int flag = 0;
+    long long flag = 0;
 
     for(char ch : str) {
-        if(isalpha(ch)) {
-            ch = tolower(ch);  
-            flag |= (1 << (ch - 'a'));
+        if(ch >= 'A' && ch <= 'Z') {
+            flag |= (1LL << (ch - 'A'));
+        }
+        else if(ch >= 'a' && ch <= 'z') {
+            flag |= (1LL << (26 + ch - 'a'));
         }
     }
 
-    cout << (flag == (1 << 26) - 1 ? "Yes" : "No");
+    long long allChars = (1LL << 52) - 1;
+
+    cout << (flag == allChars ? "Yes" : "No");
 
     return 0;
 }
