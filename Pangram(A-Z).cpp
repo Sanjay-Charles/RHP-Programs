@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cctype>
 using namespace std;
 
 int main() {
@@ -8,7 +9,10 @@ int main() {
     int flag = 0;
 
     for(char ch : str) {
-        flag |= (1 << (ch - 'A'));
+        if(isalpha(ch)) {
+            ch = tolower(ch);  
+            flag |= (1 << (ch - 'a'));
+        }
     }
 
     cout << (flag == (1 << 26) - 1 ? "Yes" : "No");
